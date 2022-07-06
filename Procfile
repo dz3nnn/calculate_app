@@ -1,0 +1,1 @@
+web: gunicorn calculate_app.wsgi --log-file -
