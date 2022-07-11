@@ -9,3 +9,7 @@ class Item(models.Model):
     count = models.IntegerField(verbose_name='Количество')
     price = models.DecimalField(
         verbose_name='Цена закупки', max_digits=4, decimal_places=2)
+
+    class Meta:
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товары'
