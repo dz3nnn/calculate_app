@@ -1,6 +1,5 @@
 from django.db import models
-
-# Create your models here.
+from django.utils.timezone import now
 
 
 class Item(models.Model):
@@ -9,6 +8,7 @@ class Item(models.Model):
     count = models.IntegerField(verbose_name='Количество')
     price = models.DecimalField(
         verbose_name='Цена закупки', max_digits=4, decimal_places=2)
+    created_date = models.DateTimeField(verbose_name='Дата',default=now)
 
     class Meta:
         verbose_name = 'Товар'
