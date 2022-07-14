@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
-    
+
     # custom
     'main_app',
 ]
@@ -79,10 +79,19 @@ WSGI_APPLICATION = 'calculate_app.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+# https://docs.djangoproject.com/en/4.0/ref/settings/#
+ON_HEROKU = os.environ.get('ON_HEROKU', False)
 
-DATABASES = {'default': dj_database_url.config(
-    default=os.environ.get('DATABASE_URL'))}
+if ON_HEROKU:
+    DATABASE_URL = os.environ.get('DATABASE_URL')
+else:
+    DATABASE_URL = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+
+DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
+
+
+# DATABASES = {'default': dj_database_url.config(
+#     default=os.environ.get('DATABASE_URL'))}
 
 
 # Password validation
