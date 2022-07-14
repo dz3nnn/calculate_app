@@ -6,5 +6,9 @@ class ItemAdmin(admin.ModelAdmin):
     list_display = ('name', 'count', 'price')
 
 
-admin.site.register([Invoice])
+class InvoiceAdmin(admin.ModelAdmin):
+    list_display = ('name', 'full_price')
+
+
+admin.site.register(Invoice, InvoiceAdmin)
 admin.site.register(Item, ItemAdmin)
