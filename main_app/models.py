@@ -14,7 +14,7 @@ class Invoice(models.Model):
     )
     def full_price(self):
         items = Item.objects.filter(invoice=self)
-        return sum([item.price for item in items])
+        return sum([item.price * item.count for item in items])
 
     def __str__(self):
         return '%s (от %s)' % (self.name, self.created_date)
