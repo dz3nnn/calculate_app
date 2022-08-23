@@ -36,15 +36,17 @@ class Item(models.Model):
     created_date = models.DateField(verbose_name='Дата', default=now)
 
     def __str__(self):
-        return '%s (количество: %s) - %s' % (self.name, self.count, self.created_date)
+        if self.invoice:
+            return f'{self.name} ({self.invoice.name}) остаток: {self.rest}'
+        return f'{self.name} остаток: {self.rest}'
 
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
 
     def save(self, *args, **kwargs):
-        if not self.rest:
-            self.rest = self.count
+        # if not self.rest:
+        #     self.rest = self.count
         super(Item, self).save(*args, **kwargs)
 
 
@@ -56,6 +58,17 @@ class Sell(models.Model):
     count = models.IntegerField(verbose_name='Количество')
     price = models.DecimalField(
         verbose_name='Цена продажи', max_digits=10, decimal_places=2)
+    created_date = models.DateField(verbose_name='Дата', default=now)
+
+    @property
+    @admin.display(
+        description='Итого',
+    )
+    def full_price(self):
+        return self.price * self.count
+
+    def __str__(self):
+        return f'{self.item.name} ({self.price} * {self.count} = {self.full_price})'
 
     class Meta:
         verbose_name = 'Продажа'
