@@ -99,3 +99,15 @@ class Payment(models.Model):
     class Meta:
         verbose_name = 'Платеж'
         verbose_name_plural = 'Платежи'
+
+
+class Service(models.Model):
+
+    name = models.CharField(verbose_name='Наименование', max_length=100)
+    created_date = models.DateField(verbose_name='Дата', default=now)
+    price = models.DecimalField(
+        verbose_name='Сумма', max_digits=10, decimal_places=2)
+
+    class Meta:
+        verbose_name = 'Услуга'
+        verbose_name_plural = 'Услуги'
