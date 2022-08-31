@@ -62,7 +62,7 @@ ROOT_URLCONF = 'calculate_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,12 +80,8 @@ WSGI_APPLICATION = 'calculate_app.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#
-ON_HEROKU = os.environ.get('ON_HEROKU', False)
 
-if ON_HEROKU:
-    DATABASE_URL = os.environ.get('DATABASE_URL')
-else:
-    DATABASE_URL = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
 DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
 

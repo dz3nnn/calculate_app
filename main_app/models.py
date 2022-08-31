@@ -1,10 +1,12 @@
 from django.db import models
 from django.utils.timezone import now
 from django.contrib import admin
+from django.contrib import messages
+from django.core.exceptions import ValidationError
 
 
 class Invoice(models.Model):
-    """ Модель для накладных """
+
     name = models.CharField(verbose_name='Название документа', max_length=100)
     created_date = models.DateField(verbose_name='Дата', default=now)
 
@@ -25,7 +27,7 @@ class Invoice(models.Model):
 
 
 class Item(models.Model):
-    """ Модель для товаров """
+
     name = models.CharField(verbose_name='Наименование', max_length=100)
     count = models.IntegerField(verbose_name='Количество')
     rest = models.IntegerField(verbose_name='Остаток', default=0)
@@ -51,7 +53,6 @@ class Item(models.Model):
 
 
 class Sell(models.Model):
-    """ Модель продажи товара """
 
     item = models.ForeignKey(
         Item, on_delete=models.CASCADE, verbose_name='Товар', blank=True, null=True)
@@ -74,13 +75,24 @@ class Sell(models.Model):
         verbose_name = 'Продажа'
         verbose_name_plural = 'Продажи'
 
-    def save(self, *args, **kwargs):
-        if self.item:
-            item_model = Item.objects.get(pk=self.item.pk)
-            if item_model.rest >= self.count:
-                item_model.rest -= self.count
-                item_model.save()
-                super(Sell, self).save(*args, **kwargs)
-        else:
-            # Can't sell
-            pass
+
+class PaymentType(models.Model):
+
+    name = models.CharField(verbose_name='Наименование', max_length=100)
+
+    class Meta:
+        verbose_name = 'Тип платежа'
+        verbose_name_plural = 'Типы платежей'
+
+
+class Payment(models.Model):
+
+    payment_type = models.ForeignKey(
+        PaymentType, on_delete=models.CASCADE, verbose_name='Тип платежа')
+    created_date = models.DateField(verbose_name='Дата', default=now)
+    price = models.DecimalField(
+        verbose_name='Сумма', max_digits=10, decimal_places=2)
+
+    class Meta:
+        verbose_name = 'Платеж'
+        verbose_name_plural = 'Платежи'

@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from .models import Item
+from django.shortcuts import render
 
 
 def setup_rests(request):
@@ -12,3 +13,7 @@ def setup_rests(request):
         item.save()
 
     return JsonResponse({'success': 'true'})
+
+
+def test(request):
+    return render(request, 'month.html', {'test': 'test'})
