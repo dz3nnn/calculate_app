@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Меню {% endblock %}
+{% block content %}
+<div class="list-group w-auto">
+   <a href="{% url 'admin:index' %}" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+      <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512">
+         <path d="M22.853,1.148a3.626,3.626,0,0,0-5.124,0L1.465,17.412A4.968,4.968,0,0,0,0,20.947V23a1,1,0,0,0,1,1H3.053a4.966,4.966,0,0,0,3.535-1.464L22.853,6.271A3.626,3.626,0,0,0,22.853,1.148ZM5.174,21.122A3.022,3.022,0,0,1,3.053,22H2V20.947a2.98,2.98,0,0,1,.879-2.121L15.222,6.483l2.3,2.3ZM21.438,4.857,18.932,7.364l-2.3-2.295,2.507-2.507a1.623,1.623,0,1,1,2.295,2.3Z"/>
+      </svg>
+      <div class="d-flex gap-2 w-100 justify-content-between">
+         <div>
+            <h6 class="mb-0">Наполнение</h6>
+            <p class="mb-0 opacity-75">Админ панель</p>
+         </div>
+         <small class="opacity-50 text-nowrap">1</small>
+      </div>
+   </a>
+   <a href="{% url 'month' %}" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+      <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512">
+         <path d="M23,22H3a1,1,0,0,1-1-1V1A1,1,0,0,0,0,1V21a3,3,0,0,0,3,3H23a1,1,0,0,0,0-2Z"/>
+         <path d="M15,20a1,1,0,0,0,1-1V12a1,1,0,0,0-2,0v7A1,1,0,0,0,15,20Z"/>
+         <path d="M7,20a1,1,0,0,0,1-1V12a1,1,0,0,0-2,0v7A1,1,0,0,0,7,20Z"/>
+         <path d="M19,20a1,1,0,0,0,1-1V7a1,1,0,0,0-2,0V19A1,1,0,0,0,19,20Z"/>
+         <path d="M11,20a1,1,0,0,0,1-1V7a1,1,0,0,0-2,0V19A1,1,0,0,0,11,20Z"/>
+      </svg>
+      <div class="d-flex gap-2 w-100 justify-content-between">
+         <div>
+            <h6 class="mb-0">Отчет</h6>
+            <p class="mb-0 opacity-75">По месяцам</p>
+         </div>
+         <small class="opacity-50 text-nowrap">2</small>
+      </div>
+   </a>
+</div>
+{% endblock %}

@@ -15,5 +15,9 @@ def setup_rests(request):
     return JsonResponse({'success': 'true'})
 
 
-def test(request):
-    return render(request, 'month.html', {'test': 'test'})
+def index(request):
+    return render(request, 'index.html', context={})
+
+
+def month(request):
+    return render(request, 'month.html', context={})

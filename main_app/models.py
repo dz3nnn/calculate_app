@@ -84,6 +84,9 @@ class PaymentType(models.Model):
         verbose_name = 'Тип платежа'
         verbose_name_plural = 'Типы платежей'
 
+    def __str__(self):
+        return self.name
+
 
 class Payment(models.Model):
 
