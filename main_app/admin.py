@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Item, Invoice, Sell, PaymentType, Payment
+from .models import Item, Invoice, Sell, PaymentType, Payment, Service
 from .forms import SellAdminForm
 
 
@@ -38,8 +38,13 @@ class PaymentTypeAdmin(admin.ModelAdmin):
     pass
 
 
+class ServiceAdmin(admin.ModelAdmin):
+    pass
+
+
 admin.site.register(Invoice, InvoiceAdmin)
 admin.site.register(Item, ItemAdmin)
 admin.site.register(Sell, SellAdmin)
 admin.site.register(Payment, PaymentAdmin)
 admin.site.register(PaymentType, PaymentTypeAdmin)
+admin.site.register(Service, ServiceAdmin)
