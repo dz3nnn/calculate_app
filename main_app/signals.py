@@ -7,7 +7,7 @@ from django.dispatch import receiver
 def remove_rest_on_save(sender, instance, created, **kwargs):
     # Add new Sell -> remove rest from Item
     if created and instance.item:
-        item_model = Item.objects.get(pk=50)
+        item_model = Item.objects.get(pk=instance.item.pk)
         item_model.rest -= instance.count
         item_model.save()
 
