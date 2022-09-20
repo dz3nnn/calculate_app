@@ -39,7 +39,7 @@ class Item(models.Model):
 
     def __str__(self):
         if self.invoice:
-            return f'{self.name} ({self.invoice.name}) остаток: {self.rest}'
+            return f'{self.name} {self.price} BYN ({self.invoice.name}) остаток: {self.rest}'
         return f'{self.name} остаток: {self.rest}'
 
     class Meta:
