@@ -45,6 +45,7 @@ class Item(models.Model):
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
+        ordering = ['name']
 
     def save(self, *args, **kwargs):
         # if not self.rest:
