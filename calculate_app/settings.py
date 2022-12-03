@@ -22,11 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get(
-    'SECRET_KEY', 'insecure-key-517231hbdahbsdghasdjhasdjkasfnas')
+SECRET_KEY = 'insecure-key-517231hbdahbsdghasdjhasdjkasfnas'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG_VALUE') == 'TRUE'
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -81,7 +80,7 @@ WSGI_APPLICATION = 'calculate_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#
 
-DATABASE_URL = os.environ.get('DATABASE_URL')
+DATABASE_URL = 'postgres://ykgfktyt:3T-k232rnAXpUf3GAb1Fydbx2J11NwRM@mouse.db.elephantsql.com/ykgfktyt'
 
 DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
 
